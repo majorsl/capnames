@@ -1,5 +1,5 @@
-#!/bin/sh
-# version 1.0.1
+#!/usr/bin/env bash
+# version 1.0.2
 # This script will capitalize the first letter of every file and directory in the
 # path given. You can list specific files within the script and use -m to exclude them.
 
@@ -16,7 +16,7 @@ fi
 
 #Here we set BASHs internal IFS variable so directories/filenames are not broken into new lines when a space is found.
 IFS=$'\n'
-cd $STARTDIR
+cd "$STARTDIR" || exit
 FILES="*"
 for F in $FILES
 do
@@ -31,7 +31,7 @@ do
     fi
   fi
   
-  echo $PROCESS"Processing $F file..."
-  mv $F $VARCAP
+  echo "$PROCESS""Processing $F file..."
+  mv "$F" "$VARCAP"
 done
 unset IFS
